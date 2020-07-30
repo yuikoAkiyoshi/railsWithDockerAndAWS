@@ -1,19 +1,24 @@
-# railsWithDockerAndAWS
-rails+Docker+AWSを使用したwebアプリケーション
+# README
 
-# Requirement 
-ruby:2.3.6
-他Gemfile参照
- 
-# Installation
-```bash
-docker-compose build
-```
- 
-# Usage
-```bash
-docker-compose up -d
-```
- 
-# Author
-* yuiko akiyoshi
+This README would normally document whatever steps are necessary to get the
+application up and running.
+
+Things you may want to cover:
+
+* Ruby version
+
+* System dependencies
+
+* Configuration
+
+* Database creation
+
+* Database initialization
+
+* How to run the test suite
+
+* Services (job queues, cache servers, search engines, etc.)
+
+* Deployment instructions
+
+* ...
