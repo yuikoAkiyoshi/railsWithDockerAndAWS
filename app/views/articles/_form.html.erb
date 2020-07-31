@@ -1,0 +1,17 @@
+<%= render 'shared/error_messages' %>
+
+<%= form_for article do |f|%>
+    <div>
+        <img src="/article_images/<%= @article.image_name %>">
+    </div>
+    <input name="image" type="file">
+    <div>
+      <%= f.label :title, 'タイトル' %>
+      <%= f.text_field :title %>
+    </div>
+    <div>
+      <%= f.label :body, '本文' %>
+      <%= f.text_area :body, rows: 10 %>
+    </div>
+    <%= f.submit '保存' %>
+  <% end %>

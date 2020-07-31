@@ -1,5 +1,8 @@
 <div class="wrapper">
   <div class="indexInner">
+    <% if flash[:notice] %>
+      <div><%= flash[:notice] %></div>
+    <% end %>
     <% @articles.each do |article| %>
       <a href="<%= "/articles/#{article.id}/show" %>">
         <img src="<%= "/article_images/#{article.image_name}" %>">
@@ -7,6 +10,6 @@
         <div class="body"><%= article.body %></div>
       </a>
     <% end %>
-    <a href="/articles/new">新規追加</a>
+    <td><%= link_to "新規作成", new_article_path %></td>
   </div>
 </div>

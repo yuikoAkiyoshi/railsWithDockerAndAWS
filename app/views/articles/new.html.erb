@@ -8,14 +8,7 @@
             <%= message %>
           </div>
         <% end %>
-        <%= form_tag("/articles/create", {multipart: true}) do %>
-            <label for="title">title</label>
-            <textarea id="title" name="title"><%= @article.title %></textarea>
-            <label for="body">body</label>
-            <textarea id="body" name="body"><%= @article.body %></textarea>
-            <input name="image" type="file">
-            <input type="submit" value="投稿">
-        <% end %>
+        <%= render partial: 'form', locals: { article:@article } %>
       </div>
     </div>
   </div>
