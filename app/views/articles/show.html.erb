@@ -1,6 +1,9 @@
 <div class="wrapper">
   <div class="container">
     <div class="articles-show-item">
+      <% if flash[:notice] %>
+        <div><%= flash[:notice] %></div>
+      <% end %>
       <div class="image">
         <img src="/article_images/<%= @article.image_name %>">
       </div>
@@ -11,10 +14,17 @@
         <%= @article.body %>
       </p>
       <div class="buttonWrapper">
-        <div class="addButton"><%= link_to("編集", "/articles/#{@article.id}/edit") %></div>
-        <div class="deleteButton"><%= link_to("削除", "/articles/#{@article.id}/destroy", {method:"article"}) %></div>
-      </div>
+        <div><%= link_to "編集", edit_article_path %></div>
+        <div><%= link_to "削除", @article, method: :delete %></div>
+        </div>
     </div>
   </div>
 </div>
+
+<div>
+  <div>コメント</div>
+  <%= render @article.comments %>
+</div>
+
+<%= render partial: 'comments/form', locals: { comment: @comment} %>
 
