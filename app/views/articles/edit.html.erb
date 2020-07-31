@@ -1,0 +1,23 @@
+<div class="main articles-new">
+  <div class="container">
+    <h1 class="form-heading">編集する</h1>
+    <div class="form">
+        <div class="form-body">
+          <% @article.errors.full_messages.each do |message| %>
+            <div class="form-error">
+              <%= message%>
+            </div>
+          <% end %>
+          <%= form_tag("/articles/#{@article.id}/update") do %>
+            <div class="image">
+                <img src="/article_images/<%= @article.image_name %>">
+            </div>
+            <input name="image" type="file">
+            <textarea name="title"><%= @article.title %></textarea>
+            <textarea name="body"><%= @article.body %></textarea>
+            <input type="submit" value="保存">
+          <% end %>
+      </div>
+    </div>
+  </div>
+</div>
