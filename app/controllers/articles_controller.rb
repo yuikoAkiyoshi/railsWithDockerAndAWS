@@ -1,4 +1,6 @@
 class ArticlesController < ApplicationController
+    before_action :set_target_article, only: %i[show edit update destroy]
+
     def index
         @articles = Article.all.order(created_at: :desc)
     end
@@ -8,42 +10,48 @@ class ArticlesController < ApplicationController
     end
 
     def create
-        @article = Article.new(title: params[:title], body: params[:body], image_name: [])
-        if params[:image]
-            @article.image_name = "#{@article.id}.jpg"
-            image = params[:image]
-            File.binwrite("public/article_images/#{@article.image_name}", image.read)
-        end
-        if @article.save
+        article = Article.new(article_params)
+        if article.save
             flash[:notice] = "投稿を作成しました"
-            redirect_to("/articles/index")
+            redirect_to article
         else
-            render("articles/new")
+            redirect_to new_article_path, flash: {
+                article: article,
+                error_messages: article.errors.full_messages
+            }
         end
     end
 
     def show
-        @article = Article.find_by(id: params[:id])
+        @comment = Comment.new(article_id: @article.id)
     end
 
     def edit
-        @article = Article.find_by(id: params[:id])
     end
 
     def update
-        @article = Article.find_by(id: params[:id])
-        @article.title = params[:title]
-        @article.body = params[:body]
-        if @article.save
-            redirect_to("/articles/index")
+        if @article.update(article_params)
+            redirect_to @article
         else
-            render("articles/:id/edit")
+            redirect_to :back, flash: {
+                article: @article,
+                error_messages: @article.errors.full_messages
+            }
         end
     end
 
     def destroy
-        @article = Article.find_by(id: params[:id])
         @article.destroy
-        redirect_to("/articles/index")
+        redirect_to articles_path, flash: { notice: "「#{@article.title}」を削除しました"}
+    end
+
+    private
+
+    def article_params
+        params.require(:article).permit(:title, :body, image_name: [] )
+    end
+
+    def set_target_article
+        @article = Article.find(params[:id])
     end
 end

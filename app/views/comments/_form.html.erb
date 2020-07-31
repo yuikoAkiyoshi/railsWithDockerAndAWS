@@ -1,0 +1,17 @@
+<%= render 'shared/error_messages' %>
+
+<div>
+  <p>コメント記入</p>
+  <%= form_for comment do |f| %>
+    <%= f.hidden_field :article_id %>
+    <div>
+      <%= f.label :name, '名前' %>
+      <%= f.text_field :name %>
+    </div>
+    <div>
+      <%= f.label :comment, 'コメント' %>
+      <%= f.text_area :comment, rows: 4 %>
+    </div>
+    <%= f.submit '送信' %>
+  <% end %>
+</div>
