@@ -1,0 +1,20 @@
+<div class="wrapper">
+  <div class="container">
+    <div class="articles-show-item">
+      <div class="image">
+        <img src="/article_images/<%= @article.image_name %>">
+      </div>
+      <p class="title">
+        <%= @article.title %>
+      </p>
+      <p class="body">
+        <%= @article.body %>
+      </p>
+      <div class="buttonWrapper">
+        <div class="addButton"><%= link_to("編集", "/articles/#{@article.id}/edit") %></div>
+        <div class="deleteButton"><%= link_to("削除", "/articles/#{@article.id}/destroy", {method:"article"}) %></div>
+      </div>
+    </div>
+  </div>
+</div>
+
