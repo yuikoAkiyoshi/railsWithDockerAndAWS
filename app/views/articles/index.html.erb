@@ -1,0 +1,12 @@
+<div class="wrapper">
+  <div class="indexInner">
+    <% @articles.each do |article| %>
+      <a href="<%= "/articles/#{article.id}/show" %>">
+        <img src="<%= "/article_images/#{article.image_name}" %>">
+        <div class="title"><%= link_to(article.title, "/articles/#{article.id}") %></div>
+        <div class="body"><%= article.body %></div>
+      </a>
+    <% end %>
+    <a href="/articles/new">新規追加</a>
+  </div>
+</div>
