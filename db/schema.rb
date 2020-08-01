@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20200801060052) do
+ActiveRecord::Schema.define(version: 20200801143255) do
 
   create_table "article_tag_relations", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.integer  "article_id"
@@ -24,9 +24,9 @@ ActiveRecord::Schema.define(version: 20200801060052) do
   create_table "articles", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.string   "title"
     t.text     "body",       limit: 65535
-    t.string   "image_name"
     t.datetime "created_at",               null: false
     t.datetime "updated_at",               null: false
+    t.string   "image"
   end
 
   create_table "comments", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
