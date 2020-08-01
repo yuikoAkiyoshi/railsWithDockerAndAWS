@@ -24,7 +24,11 @@
     <% end %>
     <% @articles.each do |article| %>
       <a href="<%= "/articles/#{article.id}/show" %>">
-        <img src="<%= "/article_images/#{article.image_name}" %>">
+        <% if article.image? %>
+          <%= image_tag article.image.url %>
+        <% else %>
+          <%= image_tag "/assets/default.jpg", :size => '100x100' %>
+        <% end %>
         <div class="title"><%= link_to(article.title, "/articles/#{article.id}") %></div>
         <div class="body"><%= article.body %></div>
       </a>
