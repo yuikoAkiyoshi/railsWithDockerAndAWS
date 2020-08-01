@@ -50,13 +50,15 @@ class ArticlesController < ApplicationController
 
     def destroy
         @article.destroy
+        @article.remove_image!
+        @article.save
         redirect_to articles_path, flash: { notice: "「#{@article.title}」を削除しました"}
     end
 
     private
 
     def article_params
-        params.require(:article).permit(:title, :body, image_name: [], tag_ids: [] )
+        params.require(:article).permit(:title, :body, :image, tag_ids: [])
     end
 
     def set_target_article
