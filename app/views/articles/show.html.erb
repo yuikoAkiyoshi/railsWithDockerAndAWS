@@ -7,6 +7,11 @@
       <div class="image">
         <img src="/article_images/<%= @article.image_name %>">
       </div>
+
+      <% @article.tags.each do |tag| %>
+        <span class="badge badge-primary"><%= tag.name %></span>
+      <% end %>
+
       <p class="title">
         <%= @article.title %>
       </p>
