@@ -29,6 +29,9 @@
         <div class="body"><%= article.body %></div>
       </a>
     <% end %>
+
+    <%= paginate @articles %>
+
     <% if @current_user %>
     <td><%= link_to "新規作成", new_article_path %></td>
     <% end %>
