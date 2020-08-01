@@ -3,7 +3,7 @@ class ArticlesController < ApplicationController
 
     def index
         @articles = params[:tag_id].present? ? Tag.find(params[:tag_id]).articles : Article.all
-        @articles = @articles.all.order(created_at: :desc)
+        @articles = @articles.page(params[:page])
     end
 
     def new
