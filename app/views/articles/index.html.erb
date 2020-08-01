@@ -1,3 +1,12 @@
+<div>
+<% if @current_user %>
+  <%= @current_user.name %>
+  <%= link_to 'ログアウト', logout_path, method: :delete, class: '' %>
+<% else %>
+  <%= link_to '登録', new_user_path, class: '' %>
+  <%= link_to 'ログイン', loginform_path, class: '' %>
+<% end %>
+</div>
 <div class="wrapper">
   <div class="indexInner">
     <% if flash[:notice] %>
@@ -20,6 +29,8 @@
         <div class="body"><%= article.body %></div>
       </a>
     <% end %>
+    <% if @current_user %>
     <td><%= link_to "新規作成", new_article_path %></td>
+    <% end %>
   </div>
 </div>

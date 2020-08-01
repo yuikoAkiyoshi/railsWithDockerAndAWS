@@ -18,10 +18,12 @@
       <p class="body">
         <%= @article.body %>
       </p>
-      <div class="buttonWrapper">
-        <div><%= link_to "編集", edit_article_path %></div>
-        <div><%= link_to "削除", @article, method: :delete %></div>
+      <% if @current_user %>
+        <div class="buttonWrapper">
+          <div><%= link_to "編集", edit_article_path %></div>
+          <div><%= link_to "削除", @article, method: :delete %></div>
         </div>
+      <% end %>
     </div>
   </div>
 </div>
