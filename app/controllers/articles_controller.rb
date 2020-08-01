@@ -7,7 +7,11 @@ class ArticlesController < ApplicationController
     end
 
     def new
-        @article = Article.new
+        if @current_user
+            @article = Article.new
+        else
+            redirect_to articles_path, flash: { notice: "ログインしてください" }
+        end
     end
 
     def create
@@ -28,6 +32,9 @@ class ArticlesController < ApplicationController
     end
 
     def edit
+        if !(@current_user)
+            redirect_to articles_path, flash: { notice: "ログインしてください" }
+        end
     end
 
     def update
