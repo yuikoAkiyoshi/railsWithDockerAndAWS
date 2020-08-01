@@ -3,6 +3,16 @@
     <% if flash[:notice] %>
       <div><%= flash[:notice] %></div>
     <% end %>
+    <%= form_tag articles_path, method: :get do %>
+      <%= select_tag :tag_id,
+                     options_from_collection_for_select(Tag.all, :id, :name, params[:tag_id]),
+                     {
+                       prompt: 'タグで絞り込み',
+                       class: '',
+                       onchange: 'submit(this.form);'
+                     }
+      %>
+    <% end %>
     <% @articles.each do |article| %>
       <a href="<%= "/articles/#{article.id}/show" %>">
         <img src="<%= "/article_images/#{article.image_name}" %>">
