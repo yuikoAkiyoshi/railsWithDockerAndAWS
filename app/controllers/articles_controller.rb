@@ -2,7 +2,8 @@ class ArticlesController < ApplicationController
     before_action :set_target_article, only: %i[show edit update destroy]
 
     def index
-        @articles = Article.all.order(created_at: :desc)
+        @articles = params[:tag_id].present? ? Tag.find(params[:tag_id]).articles : Article.all
+        @articles = @articles.all.order(created_at: :desc)
     end
 
     def new
@@ -48,7 +49,7 @@ class ArticlesController < ApplicationController
     private
 
     def article_params
-        params.require(:article).permit(:title, :body, image_name: [] )
+        params.require(:article).permit(:title, :body, image_name: [], tag_ids: [] )
     end
 
     def set_target_article
