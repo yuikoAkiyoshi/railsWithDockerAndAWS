@@ -1,10 +1,12 @@
 <%= render 'shared/error_messages' %>
 
 <%= form_for article do |f|%>
-    <div>
-        <img src="/article_images/<%= @article.image_name %>">
-    </div>
-    <input name="image" type="file">
+    <% if article.image? %>
+      <%= image_tag article.image.url %>
+    <% else %>
+      <%= image_tag "/assets/default.jpg", :size => '100x100' %>
+    <% end %>
+    <%= f.file_field :image, accept: 'image/jpeg,image/gif,image/png' %>
     <div>
       <%= f.label :title, 'タイトル' %>
       <%= f.text_field :title %>
