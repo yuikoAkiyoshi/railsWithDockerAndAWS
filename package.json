@@ -1,0 +1,28 @@
+{
+  "name": "railsWithDokerAndAWS",
+  "version": "1.0.0",
+  "description": "This README would normally document whatever steps are necessary to get the application up and running.",
+  "main": "index.js",
+  "directories": {
+    "lib": "lib",
+    "test": "test"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "format": "prettier --write 'app/assets/*/*.{scss,js}'"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/yuikoAkiyoshi/railsWithDockerAndAWS.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/yuikoAkiyoshi/railsWithDockerAndAWS/issues"
+  },
+  "homepage": "https://github.com/yuikoAkiyoshi/railsWithDockerAndAWS#readme",
+  "devDependencies": {
+    "prettier": "^2.0.5"
+  }
+}
