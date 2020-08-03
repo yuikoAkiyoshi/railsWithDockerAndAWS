@@ -1,40 +1,37 @@
-<div class="wrapper">
-  <div class="container">
-    <div class="articles-show-item">
-      <% if flash[:notice] %>
-        <div><%= flash[:notice] %></div>
-      <% end %>
-
-      <% if @article.image? %>
-        <%= image_tag @article.image.url %>
-      <% else %>
-        <%= image_tag "/assets/default.jpg", :size => '100x100' %>
-      <% end %>
-
+<div class="articleImg">
+  <% if @article.image? %>
+    <%= image_tag @article.image.url %>
+  <% else %>
+    <%= image_tag "/assets/default.png" %>
+  <% end %>
+</div>
+<div class="container container--small">
+  <div class="article">
+    <% if flash[:notice] %>
+      <div class="flash"><%= flash[:notice] %></div>
+    <% end %>
+    <div class="article__tags">
       <% @article.tags.each do |tag| %>
-        <span class="badge badge-primary"><%= tag.name %></span>
-      <% end %>
-
-      <p class="title">
-        <%= @article.title %>
-      </p>
-      <p class="body">
-        <%= @article.body %>
-      </p>
-      <% if @current_user %>
-        <div class="buttonWrapper">
-          <div><%= link_to "編集", edit_article_path %></div>
-          <div><%= link_to "削除", @article, method: :delete %></div>
-        </div>
+        <span class="article__tag"><%= tag.name %></span>
       <% end %>
     </div>
+    <p class="article__title">
+      <%= @article.title %>
+    </p>
+    <div class="article__time"><%= @article.created_at.to_s(:datetime_jp) %></div>
+    <p class="article__body">
+      <%= simple_format(@article.body) %>
+    </p>
+    <% if @current_user %>
+      <div class="buttonWrapper">
+        <div class="editBtn"><%= link_to "編集", edit_article_path %></div>
+        <div class="deleteBtn"><%= link_to "削除", @article, method: :delete %></div>
+      </div>
+    <% end %>
   </div>
+  <div class="comments">
+    <div class="comments__title">コメント</div>
+    <%= render @article.comments %>
+  </div>
+  <%= render partial: 'comments/form', locals: { comment: @comment} %>
 </div>
-
-<div>
-  <div>コメント</div>
-  <%= render @article.comments %>
-</div>
-
-<%= render partial: 'comments/form', locals: { comment: @comment} %>
-
