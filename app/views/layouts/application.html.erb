@@ -3,12 +3,49 @@
   <head>
     <title>App</title>
     <%= csrf_meta_tags %>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <%= csrf_meta_tags %>
+    <meta charset=“UTF-8”>
+    <meta http-equiv=“X-UA-Compatible” content=“ie=edge”>
+    <meta name=“description” content=“秋吉惟子のポートフォリオ（rails）“>
+    <title>ポートフォリオ</title>
+    <!-- og -->
+    <meta property=“og:url” content=“”>
+    <meta property=“og:title” content=“ポートフォリオ“>
+    <meta property=“og:image” content=“/assets/og.png”>
+    <meta property=“og:description” content=“秋吉惟子のポートフォリオ（rails）“>
+    <meta property=“og:site_name” content=“akiyoshi”>
+    <meta property=“og:image:width” content=“1200">
+    <meta property=“og:image:height” content=“630">
+    <meta property=“og:type” content=“website”>
+    <meta property=“og:locale” content=“ja_JP”>
 
-    <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%= stylesheet_link_tag    'application', media: 'screen', 'data-turbolinks-track': 'reload' %>
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
   </head>
 
   <body>
+    <header class="header">
+      <div class="header__inner">
+        <div class="header__logo"><a href="<%= root_path %>">PORTFOLIO</a></div>
+        <div class="header__menu">
+          <% if @current_user %>
+            <%= link_to 'LOGOUT', logout_path, method: :delete, class: 'header__menuItem' %>
+            <div class="header__userName"><%= @current_user.name %></div>
+          <% else %>
+            <%= link_to 'SIGNING', new_user_path, class: 'header__menuItem' %>
+            <%= link_to 'LOGIN', loginform_path, class: 'header__menuItem' %>
+          <% end %>
+        </div>
+      </div>
+    </header>
     <%= yield %>
+    <footer class="footer">
+      <div class="footer__inner">
+        <div class="copyright">
+          Copyright © 2020 yuiko.akiyoshi
+        </div>
+      </div>
+    </footer>
   </body>
 </html>

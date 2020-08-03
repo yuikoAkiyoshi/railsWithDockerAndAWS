@@ -1,43 +1,50 @@
-<div>
-<% if @current_user %>
-  <%= @current_user.name %>
-  <%= link_to 'ログアウト', logout_path, method: :delete, class: '' %>
-<% else %>
-  <%= link_to '登録', new_user_path, class: '' %>
-  <%= link_to 'ログイン', loginform_path, class: '' %>
-<% end %>
+<div class="mv">
+  <div class="mv__bg">
+    <div class="mv__text">
+      <div>PORTFOLIO</div>
+      <span>by yuiko.akiyoshi</span>
+    </div>
+  </div>
 </div>
-<div class="wrapper">
-  <div class="indexInner">
+<div class="container">
+  <div class="articles">
+    <h2 class="articles__title">記事一覧</h2>
     <% if flash[:notice] %>
-      <div><%= flash[:notice] %></div>
+      <div class="flash"><%= flash[:notice] %></div>
     <% end %>
-    <%= form_tag articles_path, method: :get do %>
-      <%= select_tag :tag_id,
-                     options_from_collection_for_select(Tag.all, :id, :name, params[:tag_id]),
-                     {
-                       prompt: 'タグで絞り込み',
-                       class: '',
-                       onchange: 'submit(this.form);'
-                     }
-      %>
-    <% end %>
-    <% @articles.each do |article| %>
-      <a href="<%= "/articles/#{article.id}/show" %>">
-        <% if article.image? %>
-          <%= image_tag article.image.url %>
-        <% else %>
-          <%= image_tag "/assets/default.jpg", :size => '100x100' %>
-        <% end %>
-        <div class="title"><%= link_to(article.title, "/articles/#{article.id}") %></div>
-        <div class="body"><%= article.body %></div>
-      </a>
-    <% end %>
+    <div class="articles__tags">
+      <%= form_tag articles_path, method: :get do %>
+        <%= select_tag :tag_id,
+                      options_from_collection_for_select(Tag.all, :id, :name, params[:tag_id]),
+                      {
+                        prompt: 'タグで絞り込み',
+                        class: '',
+                        onchange: 'submit(this.form);'
+                      }
+        %>
+      <% end %>
+    </div>
+    <div class="articles__cards">
+      <% @articles.each do |article| %>
+        <a href="<%= "/articles/#{article.id}" %>" class="articles__card">
+          <div class="articles__cardImgWrapper">
+            <% if article.image? %>
+              <%= image_tag article.image.url :class => 'articles__cardImg' %>
+            <% else %>
+              <%= image_tag "/assets/default.png", :class => 'articles__cardImg' %>
+            <% end %>
+          </div>
+          <div class="articles__cardTitle"><%= article.title %></div>
+          <div class="articles__cardBody"><%= article.body %></div>
+          <div class="articles__cardTime"><%= article.created_at.to_s(:datetime_jp) %></div>
+        </a>
+      <% end %>
+    </div>
 
     <%= paginate @articles %>
-
-    <% if @current_user %>
-    <td><%= link_to "新規作成", new_article_path %></td>
-    <% end %>
   </div>
+  <% if @current_user %>
+    <!-- <div><%= link_to "", new_article_path %></div> -->
+    <a href="<%= new_article_path %>" class="createBtn"><img src="assets/createBtn.png"></a>
+  <% end %>
 </div>
