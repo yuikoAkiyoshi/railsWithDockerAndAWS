@@ -1,0 +1,27 @@
+.container--users {
+  height: calc(100vh - 99px - 32px);
+  margin-bottom: 0;
+}
+.users {
+  text-align: center;
+  &__title {
+    margin-top: 32px;
+    font-size: 24px;
+    letter-spacing: 0.2em;
+  }
+  &__form {
+    margin-top: 16px;
+  }
+  &__input,
+  &__btn {
+    width: 100%;
+    padding: 8px;
+    background: rgba(255, 255, 255, 0.5);
+    border-radius: 16px;
+  }
+  &__btn {
+    margin-top: 36px;
+    background: -webkit-linear-gradient(0deg, #fa709a, #fee140);
+    color: #333;
+  }
+}
