@@ -27,7 +27,7 @@
   <body>
     <header class="header">
       <div class="header__inner">
-        <div class="header__logo"><a href="<%= root_path %>">PORTFOLIO</a></div>
+        <h1 class="header__logo"><a href="<%= root_path %>">PORTFOLIO</a></h1>
         <div class="header__menu">
           <% if @current_user %>
             <%= link_to 'LOGOUT', logout_path, method: :delete, class: 'header__menuItem' %>
