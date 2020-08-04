@@ -29,7 +29,7 @@
         <a href="<%= "/articles/#{article.id}" %>" class="articles__card">
           <div class="articles__cardImgWrapper">
             <% if article.image? %>
-              <%= image_tag article.image.url :class => 'articles__cardImg' %>
+              <%= image_tag article.image.url, :class => 'articles__cardImg' %>
             <% else %>
               <%= image_tag "/assets/default.png", :class => 'articles__cardImg' %>
             <% end %>

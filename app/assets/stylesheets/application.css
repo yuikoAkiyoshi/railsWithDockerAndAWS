@@ -378,6 +378,8 @@
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     letter-spacing: 0.2em;
+    font-size: 16px;
+    font-weight: normal;
   }
   .header__menu {
     display: flex;
