@@ -41,11 +41,8 @@ jobs:
       - run:
           command: |
             mkdir /tmp/test-results
-            TEST_FILES="$(circleci tests glob "spec/**/*_spec.rb" | \
+            TEST_FILES="$(circleci tests glob "spec/**/*_spec.rb | \
               circleci tests split --split-by=timings)"
-
-
-# ③ここでRspecJunitFormatterというgemをインストールしていないとエラーになります。gemfileに記述しましょう。
             bundle exec rspec \
               --format progress \
               --format RspecJunitFormatter \
