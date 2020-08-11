@@ -1,0 +1,20 @@
+<div class="container">
+  <div class="users">
+    <h2 class="users__title">ユーザー一覧</h2>
+    <div class="users__tags">
+    <div class="users__cards">
+      <% @users.each do |user| %>
+        <a href="<%= "/users/#{user.id}/articles" %>" class="users__card">
+          <div class="articles__cardImgWrapper">
+            <% if user.image? %>
+              <%= image_tag user.image.url, :class => 'articles__cardImg' %>
+            <% else %>
+              <%= image_tag "/assets/default.png", :class => 'articles__cardImg' %>
+            <% end %>
+          </div>
+          <div class="articles__cardName"><%= user.name %></div>
+        </a>
+      <% end %>
+    </div>
+  </div>
+</div>

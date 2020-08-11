@@ -33,6 +33,7 @@
             <%= link_to 'LOGOUT', logout_path, method: :delete, class: 'header__menuItem' %>
             <%= link_to 'MYPAGE', edit_user_path(@current_user.id), class: 'header__menuItem' %>
             <div class="header__userName"><%= @current_user.name %></div>
+            <div class="deleteBtn"><%= link_to "退会", user_path(@current_user.id), method: :delete %></div>
           <% else %>
             <%= link_to 'SIGNING', new_user_path, class: 'header__menuItem' %>
             <%= link_to 'LOGIN', loginform_path, class: 'header__menuItem' %>

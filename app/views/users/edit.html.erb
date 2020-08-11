@@ -1,7 +1,7 @@
 <div class="container container--small container--users">
   <div class="users">
     <h1 class="users__title">SETTING</h1>
-
+    
     <%= render 'shared/error_messages' %>
 
     <%= form_for @user do |f| %>
@@ -17,7 +17,14 @@
         <%= f.label :password_confirmation, '新しいパスワード（確認）' %>
         <%= f.password_field :password_confirmation, class: 'users__input' %>
       </div>
-
+      <div class="users_formImg">
+        <% if @user.image? %>
+          <%= image_tag @user.image.url %>
+        <% else %>
+          <%= image_tag "/assets/default.png" %>
+        <% end %>
+      </div>
+      <%= f.file_field :image, accept: 'image/jpeg,image/gif,image/png', class: 'users__formImgBtn' %>
       <%= f.submit '更新', class: 'users__btn' %>
     <% end %>
   </div>
