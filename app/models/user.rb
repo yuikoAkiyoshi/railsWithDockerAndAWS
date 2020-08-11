@@ -1,4 +1,6 @@
 class User < ApplicationRecord
+    has_many :articles, dependent: :delete_all
+
     # password属性とpassword_confirmation属性がUserモデルに追加（二回パスワード記入して正しいパスワードかチェック）
     has_secure_password
 

@@ -37,6 +37,7 @@
           <div class="articles__cardTitle"><%= article.title %></div>
           <div class="articles__cardBody"><%= article.body %></div>
           <div class="articles__cardTime"><%= article.created_at.to_s(:datetime_jp) %></div>
+          <div class="articles__cardUser"><%= User.find_by(id: article.user_id).name %></div>
         </a>
       <% end %>
     </div>
