@@ -17,7 +17,14 @@
         <%= f.label :password_confirmation, 'パスワード（確認）' %>
         <%= f.password_field :password_confirmation, class: 'users__input' %>
       </div>
-
+      <div class="users__formImg">
+        <% if @user.image? %>
+          <%= image_tag @user.image.url %>
+        <% else %>
+          <%= image_tag "/assets/default.png" %>
+        <% end %>
+      </div>
+      <%= f.file_field :image, accept: 'image/jpeg,image/gif,image/png', class: 'users__formImgBtn' %>
       <%= f.submit '作成', class: 'users__btn' %>
     <% end %>
   </div>

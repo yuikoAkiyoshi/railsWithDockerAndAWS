@@ -1,4 +1,5 @@
 class UsersController < ApplicationController
+  before_action :set_target_user, only: %i[edit update destroy]
 
   def new
     @user = User.new(flash[:user])
@@ -39,10 +40,29 @@ class UsersController < ApplicationController
       }
     end
   end
+  
+  def destroy
+    @user.destroy
+    @user.remove_image!
+    @user.save
+    redirect_to articles_path
+  end
+
+  def index
+    @users = User.all
+  end
+
+  def articles
+    @articles = Article.where(user_id: params[:id])
+  end
 
   private
 
   def user_params
-    params.require(:user).permit(:name, :password, :password_confirmation)
+    params.require(:user).permit(:name, :password, :password_confirmation, :image)
+  end
+
+  def set_target_user
+    @user = User.find(params[:id])
   end
 end
