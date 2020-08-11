@@ -15,6 +15,7 @@
         <span class="article__tag"><%= tag.name %></span>
       <% end %>
     </div>
+    <div class="article__user"><%= @user.name %></div>
     <p class="article__title">
       <%= @article.title %>
     </p>
@@ -22,7 +23,7 @@
     <p class="article__body">
       <%= simple_format(@article.body) %>
     </p>
-    <% if @current_user %>
+    <% if @current_user.id == @user.id  %>
       <div class="buttonWrapper">
         <div class="editBtn"><%= link_to "編集", edit_article_path %></div>
         <div class="deleteBtn"><%= link_to "削除", @article, method: :delete %></div>

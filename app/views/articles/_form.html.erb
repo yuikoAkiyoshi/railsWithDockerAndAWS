@@ -1,6 +1,7 @@
 <%= render 'shared/error_messages' %>
 
 <%= form_for article do |f|%>
+  <%= f.hidden_field :user_id, :value => @current_user.id %>
   <div class="writeArticle__formImg">
     <% if article.image? %>
       <%= image_tag article.image.url %>

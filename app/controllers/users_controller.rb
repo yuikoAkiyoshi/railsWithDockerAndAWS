@@ -20,6 +20,26 @@ class UsersController < ApplicationController
   def login
   end
 
+  def edit
+    if !(@current_user)
+      redirect_to articles_path, flash: { notice: "ログインしてください" }
+    else
+      @user = User.find(params[:id])
+    end
+  end
+
+  def update
+    @user = User.find(params[:id])
+    if @user.update(user_params)
+      redirect_to articles_path
+    else
+      redirect_to :back, flash: {
+        user: @user,
+        error_messages: @user.errors.full_messages
+      }
+    end
+  end
+
   private
 
   def user_params

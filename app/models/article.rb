@@ -1,4 +1,6 @@
 class Article < ApplicationRecord
+    belongs_to :user
+
     has_many :comments, dependent: :delete_all
     has_many :article_tag_relations, dependent: :delete_all
     has_many :tags, through: :article_tag_relations
