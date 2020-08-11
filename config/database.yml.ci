@@ -3,6 +3,6 @@ test:
   encoding: utf8
   pool: 5
   username: 'root'
-  port: 3000
+  port: 3306
   host: localhost
   database: app_test
