@@ -4,5 +4,5 @@
     <span><%= comment.created_at.to_s(:datetime_jp) %></span>
   </div>
   <div class="comments__itemBody"><%= simple_format(comment.comment) %></div>
-  <span class="comments__itemBtn"><%= link_to '', comment, method: :delete,data: { confirm: '削除してもよろしいですか？'} %></span>
+  <span class="comments__itemBtn"><%= link_to '削除', comment, method: :delete,data: { confirm: '削除してもよろしいですか？'} %></span>
 </div>
