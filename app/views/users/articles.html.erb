@@ -1,0 +1,23 @@
+<div class="container">
+  <div class="articles">
+    <h2 class="articles__title">記事一覧</h2>
+    </div>
+    <div class="articles__cards">
+      <% @articles.each do |article| %>
+        <a href="<%= "/articles/#{article.id}" %>" class="articles__card">
+          <div class="articles__cardImgWrapper">
+            <% if article.image? %>
+              <%= image_tag article.image.url, :class => 'articles__cardImg' %>
+            <% else %>
+              <%= image_tag "/assets/default.png", :class => 'articles__cardImg' %>
+            <% end %>
+          </div>
+          <div class="articles__cardTitle"><%= article.title %></div>
+          <div class="articles__cardBody"><%= article.body %></div>
+          <div class="articles__cardTime"><%= article.created_at.to_s(:datetime_jp) %></div>
+          <div class="articles__cardUser"><%= User.find_by(id: article.user_id).name %></div>
+        </a>
+      <% end %>
+    </div>
+  </div>
+</div>
