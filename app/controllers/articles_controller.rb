@@ -28,6 +28,7 @@ class ArticlesController < ApplicationController
     end
 
     def show
+        @user = User.find_by(id: @article.user_id)
         @comment = Comment.new(article_id: @article.id)
     end
 
@@ -58,7 +59,7 @@ class ArticlesController < ApplicationController
     private
 
     def article_params
-        params.require(:article).permit(:title, :body, :image, tag_ids: [])
+        params.require(:article).permit(:title, :body, :image, :user_id, tag_ids: [])
     end
 
     def set_target_article
