@@ -39,7 +39,6 @@ jobs:
 
 # rspecを走らせる記述です。
       - run:
-          name: run tests
           command: |
             mkdir /tmp/test-results
             TEST_FILES="$(circleci tests glob "spec/**/*_spec.rb" | \
