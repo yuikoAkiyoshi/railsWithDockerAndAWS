@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20200811072343) do
+ActiveRecord::Schema.define(version: 20200811123952) do
 
   create_table "article_tag_relations", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.integer  "article_id"
@@ -50,6 +50,7 @@ ActiveRecord::Schema.define(version: 20200811072343) do
     t.string   "password_digest", null: false
     t.datetime "created_at",      null: false
     t.datetime "updated_at",      null: false
+    t.string   "image"
     t.index ["name"], name: "index_users_on_name", unique: true, using: :btree
   end
 
