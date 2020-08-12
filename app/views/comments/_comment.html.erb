@@ -1,8 +1,10 @@
 <div class="comments__item">
   <div class="comments__itemHead">
-    <span class="comments__itemName"><%= comment.name %></span>
+    <span class="comments__itemName"><%= User.find_by(id: comment.user_id).name %></span>
     <span><%= comment.created_at.to_s(:datetime_jp) %></span>
   </div>
   <div class="comments__itemBody"><%= simple_format(comment.comment) %></div>
-  <span class="comments__itemBtn"><%= link_to '削除', comment, method: :delete,data: { confirm: '削除してもよろしいですか？'} %></span>
+  <% if @current_user && @current_user.id == comment.user_id %>
+    <span class="comments__itemBtn"><%= link_to '削除', comment, method: :delete,data: { confirm: '削除してもよろしいですか？'} %></span>
+  <% end %>
 </div>
