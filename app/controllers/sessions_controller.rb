@@ -13,4 +13,11 @@ class SessionsController < ApplicationController
     session.delete(:user_id)
     redirect_to root_path
   end
+
+  def gestLogin
+    user = User.find_by(name: 'guest')
+    session[:user_id] = user.id
+    redirect_to articles_path, flash: { notice: "ゲストユーザーでログインしました"}
+  end
+
 end
