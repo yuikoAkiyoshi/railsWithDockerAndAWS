@@ -5,7 +5,6 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  width: 70px;
   height: 20px;
   margin-left: 12px;
   border-radius: var(--borderWidth);
@@ -71,6 +70,10 @@
   line-height: 60px;
   background: rgba(255, 255, 255, 0.8);
   transition: all 0.3s;
+  text-align: center;
+  @media screen and (max-width: 375px) {
+    font-size: 12px;
+  }
 }
 .errorMessage {
   color: #f79533;
@@ -115,12 +118,12 @@
     font-weight: bold;
     color: rgba(255, 255, 255, 0.8);
     text-align: center;
-    letter-spacing: 0.2em;
+    letter-spacing: 0.3em;
 
     & span {
-      font-size: 14px;
+      font-size: 10px;
       font-weight: normal;
-      letter-spacing: 0.2em;
+      letter-spacing: 0.1em;
     }
 
     @media screen and (max-width: 960px) {
@@ -135,15 +138,23 @@
     text-align: center;
     letter-spacing: 0.1em;
   }
-  &__tags {
-    padding-top: 12px;
+  &__searchWrapper {
+    display: flex;
+    justify-content: space-between;
+    width: 50%;
+    min-width: 256px;
+    margin: 12px auto auto;
+  }
+  &__search {
+    width: 140px;
+    border: 1px solid #f18271;
+    border-radius: 16px;
+    font-size: 12px;
     text-align: center;
-    letter-spacing: 0.1em;
-    & select {
-      border: 1px solid #f18271;
-      border-radius: 16px;
-      padding: 0 12px;
-      font-size: 12px;
+
+    @media screen and (max-width: 375px) {
+      width: 120px;
+      font-size: 10px;
     }
   }
   &__cards {
@@ -168,7 +179,7 @@
   }
   &__card {
     position: relative;
-    height: 234px;
+    height: 248px;
     border-radius: 6px;
     background: rgba(255, 255, 255, 0.3);
 
@@ -203,6 +214,22 @@
       overflow: hidden;
       padding: 8px 8px 4px;
       font-size: 12px;
+    }
+
+    .userImg {
+      position: absolute;
+      left: -6px;
+      bottom: 4px;
+      width: 30px;
+      height: 30px;
+      font-size: 14px;
+    }
+
+    &User {
+      position: absolute;
+      left: 48px;
+      bottom: 4px;
+      font-size: 14px;
     }
 
     &Time {
@@ -256,8 +283,10 @@
 
 // 詳細
 .articleImg {
+  display: flex;
+  align-items: center;
+  justify-content: center;
   width: 100vw;
-  text-align: center;
   background: #fff;
   & img {
     width: 414px;
@@ -282,6 +311,7 @@
     padding: 24px 10px 4px;
     text-align: center;
     font-size: 48px;
+    overflow-wrap: break-word;
     @media screen and (max-width: 414px) {
       font-size: 24px;
     }
@@ -294,6 +324,19 @@
     padding: 32px 10px 14px;
     font-size: 14px;
   }
+  &__infoWrapper {
+    display: flex;
+    align-items: flex-end;
+    justify-content: space-between;
+    margin-top: 24px;
+  }
+  &__userInfo {
+    display: flex;
+    align-items: center;
+    & div {
+      margin-left: 12px;
+    }
+  }
 }
 .editBtn,
 .deleteBtn {
@@ -304,6 +347,14 @@
     background: rgba(255, 255, 255, 0.6);
     border-radius: 6px;
   }
+}
+.snsArea {
+  display: flex;
+  justify-content: center;
+  margin-top: 12px;
+}
+.fb-share-button {
+  margin-left: 8px;
 }
 
 // コメント
@@ -349,7 +400,7 @@
   }
 }
 .comments {
-  margin: 32px 0 8px;
+  margin: 48px 0 8px;
   &__title {
     margin-bottom: 8px;
     font-size: 18px;

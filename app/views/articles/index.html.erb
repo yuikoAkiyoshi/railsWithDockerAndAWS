@@ -1,8 +1,10 @@
 <div class="mv">
   <div class="mv__bg">
     <div class="mv__text">
-      <div>PORTFOLIO</div>
-      <span>by yuiko.akiyoshi</span>
+      <div>D-SHARE</div>
+      <span>
+        community site for sharing diaries
+      </span>
     </div>
   </div>
 </div>
@@ -12,20 +14,22 @@
     <% if flash[:notice] %>
       <div class="flash"><%= flash[:notice] %></div>
     <% end %>
-    <div class="articles__tags">
-      <%= form_tag articles_path, method: :get do %>
-        <%= select_tag :tag_id,
-                      options_from_collection_for_select(Tag.all, :id, :name, params[:tag_id]),
-                      {
-                        prompt: 'タグで絞り込み',
-                        class: '',
-                        onchange: 'submit(this.form);'
-                      }
-        %>
-      <% end %>
-    </div>
-    <div class="articles__tags">
-      <a href="<%= "/users/" %>" class="">ユーザーで絞り込む</a>
+    <div class="articles__searchWrapper">
+      <div class="articles__search">
+        <%= form_tag articles_path, method: :get do %>
+          <%= select_tag :tag_id,
+                        options_from_collection_for_select(Tag.all, :id, :name, params[:tag_id]),
+                        {
+                          prompt: 'タグで絞り込む',
+                          class: '',
+                          onchange: 'submit(this.form);'
+                        }
+          %>
+        <% end %>
+      </div>
+      <div class="articles__search">
+        <a href="<%= "/users/" %>" class="">ユーザーで絞り込む</a>
+      </div>
     </div>
     <div class="articles__cards">
       <% @articles.each do |article| %>
@@ -40,6 +44,13 @@
           <div class="articles__cardTitle"><%= article.title %></div>
           <div class="articles__cardBody"><%= article.body %></div>
           <div class="articles__cardTime"><%= article.created_at.to_s(:datetime_jp) %></div>
+          <div class="userImg">
+            <% if User.find_by(id: article.user_id).image? %>
+              <%= image_tag User.find_by(id: article.user_id).image.url %>
+            <% else %>
+              <%= image_tag "/assets/default.png" %>
+            <% end %>
+          </div>
           <div class="articles__cardUser"><%= User.find_by(id: article.user_id).name %></div>
         </a>
       <% end %>
