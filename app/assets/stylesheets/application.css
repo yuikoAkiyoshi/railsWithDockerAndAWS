@@ -362,8 +362,7 @@
      # header
      # ================================================================= */
   header {
-    display: flex;
-    height: 48px;
+    height: 64px;
     background: #212529;
   }
   .header__inner {
@@ -371,7 +370,9 @@
     justify-content: space-between;
     max-width: 960px;
     width: 80%;
+    height: 100%;
     margin: auto;
+    align-items: center;
   }
   .header__logo {
     background: -webkit-linear-gradient(0deg, #fa709a, #fee140);
@@ -381,32 +382,27 @@
     font-size: 16px;
     font-weight: normal;
   }
+   @media screen and (max-width: 375px) {
+    .header__logo {
+      font-size: 14px;
+    }
+  }
   .header__menu {
     display: flex;
     align-items: center;
   }
-  .header__userName {
+  .userImg {
+    position: relative;
+    overflow: hidden;
+    width: 40px;
+    height: 40px;
     margin-left: 12px;
-    font-size: 12px;
-    letter-spacing: .1em;
+    border-radius: 50%;
   }
-  /* # =================================================================
-     # footer
-     # ================================================================= */
-  /* フッターを最下部に固定するため */
-  .footer {
-    height: 48px;
-    background: #000;
-  }
-  .footer__inner {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    max-width: 960px;
-    width: 80%;
-    height: 100%;
-    margin: auto;
-  }
-  .copyright {
-      font-size: 10px;
+  .userImg img {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 80px;
+    transform: translate(-50%, -50%);
   }

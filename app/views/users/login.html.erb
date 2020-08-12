@@ -16,5 +16,6 @@
       </div>
       <%= f.submit 'ログイン', class: 'users__btn' %>
     <% end %>
+    <%= link_to 'ゲストログイン', gestlogin_path, class: 'users__btn users__btn--guest', method: :post %>
   </div>
 </div>

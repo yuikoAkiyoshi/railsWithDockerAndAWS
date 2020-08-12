@@ -1,20 +1,19 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>App</title>
+    <title>D-SHARE</title>
     <%= csrf_meta_tags %>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <%= csrf_meta_tags %>
     <meta charset=“UTF-8”>
     <meta http-equiv=“X-UA-Compatible” content=“ie=edge”>
-    <meta name=“description” content=“秋吉惟子のポートフォリオ（rails）“>
-    <title>ポートフォリオ</title>
+    <meta name=“description” content=“気軽に日記をシェアできるコミュニティサイト“>
     <!-- og -->
     <meta property=“og:url” content=“”>
-    <meta property=“og:title” content=“ポートフォリオ“>
+    <meta property=“og:title” content=“D-SHARE“>
     <meta property=“og:image” content=“/assets/og.png”>
-    <meta property=“og:description” content=“秋吉惟子のポートフォリオ（rails）“>
-    <meta property=“og:site_name” content=“akiyoshi”>
+    <meta property=“og:description” content=“気軽に日記をシェアできるコミュニティサイト“>
+    <meta property=“og:site_name” content=“D-SHARE”>
     <meta property=“og:image:width” content=“1200">
     <meta property=“og:image:height” content=“630">
     <meta property=“og:type” content=“website”>
@@ -27,13 +26,18 @@
   <body>
     <header class="header">
       <div class="header__inner">
-        <h1 class="header__logo"><a href="<%= root_path %>">PORTFOLIO</a></h1>
+        <h1 class="header__logo"><a href="<%= root_path %>">D-SHARE</a></h1>
         <div class="header__menu">
           <% if @current_user %>
             <%= link_to 'LOGOUT', logout_path, method: :delete, class: 'header__menuItem' %>
-            <%= link_to 'MYPAGE', edit_user_path(@current_user.id), class: 'header__menuItem' %>
-            <div class="header__userName"><%= @current_user.name %></div>
-            <div class="deleteBtn"><%= link_to "退会", user_path(@current_user.id), method: :delete %></div>
+            <%= link_to @current_user.name, edit_user_path(@current_user.id), class: 'header__menuItem' %>
+            <div class="userImg">
+              <% if @current_user.image? %>
+                <%= image_tag @current_user.image.url %>
+              <% else %>
+                <%= image_tag "/assets/default.png" %>
+              <% end %>
+            </div>
           <% else %>
             <%= link_to 'SIGNING', new_user_path, class: 'header__menuItem' %>
             <%= link_to 'LOGIN', loginform_path, class: 'header__menuItem' %>
@@ -43,11 +47,5 @@
     </header>
     <%= yield %>
     <footer class="footer">
-      <div class="footer__inner">
-        <div class="copyright">
-          Copyright © 2020 yuiko.akiyoshi
-        </div>
-      </div>
-    </footer>
   </body>
 </html>
