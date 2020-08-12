@@ -12,11 +12,11 @@
   <%= f.file_field :image, accept: 'image/jpeg,image/gif,image/png', class: 'writeArticle__formImgBtn' %>
   <div class="writeArticle__formTitle">
     <%= f.label :title, 'タイトル' %>
-    <%= f.text_field :title %>
+    <%= f.text_field :title, placeholder:"最大40文字" %>
   </div>
   <div class="writeArticle__formBody">
     <%= f.label :body, '本文' %>
-    <%= f.text_area :body, rows: 10 %>
+    <%= f.text_area :body, rows: 10, placeholder:"最大2000文字" %>
   </div>
   <div class="writeArticle__formTags">
     <span>タグ</span>

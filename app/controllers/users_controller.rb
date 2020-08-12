@@ -1,5 +1,5 @@
 class UsersController < ApplicationController
-  before_action :set_target_user, only: %i[edit update destroy]
+  before_action :set_target_user, only: %i[edit update destroy articles]
 
   def new
     @user = User.new(flash[:user])
