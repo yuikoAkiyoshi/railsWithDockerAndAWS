@@ -5,9 +5,7 @@
   <div class="commentForm__inner">
     <%= form_for comment do |f| %>
       <%= f.hidden_field :article_id %>
-      <div class="commentForm__name">
-        <%= f.text_field :name, value: '名前' %>
-      </div>
+      <%= f.hidden_field :user_id, :value => @current_user.id %>
       <div class="commentForm__comment">
         <%= f.text_area :comment, rows: 4, value: 'テキストを入力' %>
       </div>
