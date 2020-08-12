@@ -23,7 +23,7 @@
     <p class="article__body">
       <%= simple_format(@article.body) %>
     </p>
-    <% if @current_user.id == @user.id  %>
+    <% if @current_user && @current_user.id == @user.id  %>
       <div class="buttonWrapper">
         <div class="editBtn"><%= link_to "編集", edit_article_path %></div>
         <div class="deleteBtn"><%= link_to "削除", @article, method: :delete %></div>
@@ -32,7 +32,13 @@
   </div>
   <div class="comments">
     <div class="comments__title">コメント</div>
-    <%= render @article.comments %>
+    <% if !@article.comments.empty? %>
+      <%= render @article.comments %>
+    <% else %>
+      <div>コメントはまだありません</div>
+    <% end %>
   </div>
-  <%= render partial: 'comments/form', locals: { comment: @comment} %>
+  <% if @current_user %>
+    <%= render partial: 'comments/form', locals: { comment: @comment} %>
+  <% end %>
 </div>
