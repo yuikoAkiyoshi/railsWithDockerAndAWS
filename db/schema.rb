@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20200811123952) do
+ActiveRecord::Schema.define(version: 20200812021004) do
 
   create_table "article_tag_relations", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.integer  "article_id"
@@ -32,10 +32,10 @@ ActiveRecord::Schema.define(version: 20200811123952) do
 
   create_table "comments", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.integer  "article_id"
-    t.string   "name",                     null: false
     t.text     "comment",    limit: 65535, null: false
     t.datetime "created_at",               null: false
     t.datetime "updated_at",               null: false
+    t.integer  "user_id"
     t.index ["article_id"], name: "index_comments_on_article_id", using: :btree
   end
 
@@ -46,12 +46,11 @@ ActiveRecord::Schema.define(version: 20200811123952) do
   end
 
   create_table "users", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
-    t.string   "name",            null: false
     t.string   "password_digest", null: false
     t.datetime "created_at",      null: false
     t.datetime "updated_at",      null: false
+    t.string   "name"
     t.string   "image"
-    t.index ["name"], name: "index_users_on_name", unique: true, using: :btree
   end
 
   add_foreign_key "article_tag_relations", "articles"
