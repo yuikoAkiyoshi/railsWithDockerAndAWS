@@ -3,7 +3,7 @@
     <h2 class="users__title">ユーザーで絞り込む</h2>
     <div class="users__cards">
       <% @users.each do |user| %>
-        <a href="<%= "/users/#{user.id}/articles" %>" class="users__card">
+        <div class="users__card">
           <div class="userImg">
             <% if user.image? %>
               <%= image_tag user.image.url, :class => 'articles__cardImg' %>
@@ -11,8 +11,13 @@
               <%= image_tag "/assets/default.png", :class => 'articles__cardImg' %>
             <% end %>
           </div>
-          <div class="users__cardName"><%= user.name %></div>
-        </a>
+          <a href="<%= "/users/#{user.id}/articles" %>">
+            <div class="users__cardName"><%= user.name %></div>
+          </a>
+          <% if @current_user && @current_user != user  %>
+            <%= render partial: 'relationships/follow_button', locals: { user: user} %>
+          <% end %>
+        </div>
       <% end %>
     </div>
   </div>
