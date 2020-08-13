@@ -55,6 +55,9 @@
     & a {
       flex-grow: 1;
     }
+    @media screen and(max-width:374px) {
+      padding: 12px 8px 12px 0px;
+    }
   }
   &__cardName {
     color: #333;
