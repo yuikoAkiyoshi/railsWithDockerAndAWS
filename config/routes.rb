@@ -10,4 +10,5 @@ Rails.application.routes.draw do
   resources :users, only:%i[create new edit update destroy index]
   resources :articles
   resources :comments, only:%i[create destroy]
+  resources :relationships, only: [:create, :destroy]
 end
