@@ -40,13 +40,11 @@ ActiveRecord::Schema.define(version: 20200812125336) do
   end
 
   create_table "relationships", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
-    t.integer  "user_id"
-    t.integer  "follow_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.index ["follow_id"], name: "index_relationships_on_follow_id", using: :btree
-    t.index ["user_id", "follow_id"], name: "index_relationships_on_user_id_and_follow_id", unique: true, using: :btree
-    t.index ["user_id"], name: "index_relationships_on_user_id", using: :btree
+    t.integer  "follower_id"
+    t.integer  "following_id"
+    t.datetime "created_at",   null: false
+    t.datetime "updated_at",   null: false
+    t.index ["follower_id", "following_id"], name: "index_relationships_on_follower_id_and_following_id", unique: true, using: :btree
   end
 
   create_table "tags", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
@@ -67,6 +65,4 @@ ActiveRecord::Schema.define(version: 20200812125336) do
   add_foreign_key "article_tag_relations", "articles"
   add_foreign_key "article_tag_relations", "tags"
   add_foreign_key "comments", "articles"
-  add_foreign_key "relationships", "users"
-  add_foreign_key "relationships", "users", column: "follow_id"
 end
