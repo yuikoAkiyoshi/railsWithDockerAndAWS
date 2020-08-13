@@ -1,0 +1,9 @@
+<% if article.liked_by?(@current_user) %>
+    <%= link_to(article_add_path(article), method: :delete, remote: true, id: :"js-likeBtn") do %>
+        <div class="liked"></div>
+    <% end %>
+<% else %>
+    <%= link_to(article_add_path(article), method: :post, remote: true, id: :"js-likeBtn") do %>
+        <div class="like"></div>
+    <% end %>
+<% end %>
