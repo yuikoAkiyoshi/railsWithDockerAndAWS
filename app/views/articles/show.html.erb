@@ -44,6 +44,8 @@
           <div class="editBtn"><%= link_to "編集", edit_article_path %></div>
           <div class="deleteBtn"><%= link_to "削除", @article, method: :delete %></div>
         </div>
+      <%  elsif @current_user %>
+        <%= render 'likes/like', article: @article %>
       <% end %>
     </div>
   </div>
