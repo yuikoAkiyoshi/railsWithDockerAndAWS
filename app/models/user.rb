@@ -22,6 +22,9 @@ class User < ApplicationRecord
     # その1つ1つのfollower_idから、「フォローされているUser達」を取得できるようになります。
     has_many :followers, through: :follower_relationships
 
+    has_many :likes, dependent: :destroy
+    has_many :like_articles, through: :likes, source: :article
+
     # password属性とpassword_confirmation属性がUserモデルに追加（二回パスワード記入して正しいパスワードかチェック）
     has_secure_password
 

@@ -9,10 +9,13 @@ Rails.application.routes.draw do
   root 'articles#index'
   resources :users do
     member do
-      get :following, :followers
+      get :following, :followers, :likes
     end
   end
-  resources :articles
+  resources :articles do
+    post 'add' => 'likes#create'
+    delete '/add' => 'likes#destroy'
+  end
   resources :comments, only:%i[create destroy]
   resources :relationships, only:%i[create destroy]
 end

@@ -32,6 +32,7 @@
             <%= link_to 'LOGOUT', logout_path, method: :delete, class: 'header__menuItem' %>
             <%= link_to 'フォロー', following_user_path(@current_user.id), class: 'header__menuItem' %>
             <%= link_to 'フォロワー', followers_user_path(@current_user.id), class: 'header__menuItem' %>
+            <%= link_to 'いいね', likes_user_path(@current_user.id), class: 'header__menuItem' %>
             <%= link_to @current_user.name, edit_user_path(@current_user.id), class: 'header__menuItem' %>
             <div class="userImg">
               <% if @current_user.image? %>
