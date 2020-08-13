@@ -30,16 +30,23 @@
         <div class="header__menu">
           <% if @current_user %>
             <%= link_to 'LOGOUT', logout_path, method: :delete, class: 'header__menuItem' %>
-            <%= link_to 'フォロー', following_user_path(@current_user.id), class: 'header__menuItem' %>
-            <%= link_to 'フォロワー', followers_user_path(@current_user.id), class: 'header__menuItem' %>
-            <%= link_to 'いいね', likes_user_path(@current_user.id), class: 'header__menuItem' %>
-            <%= link_to @current_user.name, edit_user_path(@current_user.id), class: 'header__menuItem' %>
-            <div class="userImg">
-              <% if @current_user.image? %>
-                <%= image_tag @current_user.image.url %>
-              <% else %>
-                <%= image_tag "/assets/default.png" %>
-              <% end %>
+            <div class="header__userMenu js-userMenu">
+              <div class="header__userMenuInner">
+                <div> <%= @current_user.name %></div>
+                <div class="userImg">
+                  <% if @current_user.image? %>
+                    <%= image_tag @current_user.image.url %>
+                  <% else %>
+                    <%= image_tag "default.png" %>
+                  <% end %>
+                </div>
+              </div>
+              <ul class="header__userMenuList js-userMenuList">
+                <li><%= link_to 'アカウント設定', edit_user_path(@current_user.id), class: 'header__menuItem header__menuItem--userMenu' %></li>
+                <li><%= link_to 'フォロー', following_user_path(@current_user.id), class: 'header__menuItem header__menuItem--userMenu' %></li>
+                <li><%= link_to 'フォロワー', followers_user_path(@current_user.id), class: 'header__menuItem header__menuItem--userMenu' %></li>
+                <li><%= link_to 'いいねした記事', likes_user_path(@current_user.id), class: 'header__menuItem header__menuItem--userMenu' %></li>
+              </ul>
             </div>
           <% else %>
             <%= link_to 'SIGNING', new_user_path, class: 'header__menuItem' %>

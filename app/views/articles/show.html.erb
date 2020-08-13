@@ -4,7 +4,7 @@
   <% if @article.image? %>
     <%= image_tag @article.image.url %>
   <% else %>
-    <%= image_tag "/assets/default.png" %>
+    <%= image_tag "default.png" %>
   <% end %>
 </div>
 <div class="container container--small">
@@ -34,7 +34,7 @@
           <% if @user.image? %>
             <%= image_tag @user.image.url %>
           <% else %>
-            <%= image_tag "/assets/default.png" %>
+            <%= image_tag "default.png" %>
           <% end %>
         </div>
         <div><%= @user.name %></div>

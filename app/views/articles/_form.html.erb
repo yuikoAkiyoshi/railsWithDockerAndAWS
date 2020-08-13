@@ -6,7 +6,7 @@
     <% if article.image? %>
       <%= image_tag article.image.url %>
     <% else %>
-      <%= image_tag "/assets/default.png" %>
+      <%= image_tag "default.png" %>
     <% end %>
   </div>
   <%= f.file_field :image, accept: 'image/jpeg,image/gif,image/png', class: 'writeArticle__formImgBtn' %>
