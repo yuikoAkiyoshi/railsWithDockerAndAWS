@@ -7,8 +7,12 @@ Rails.application.routes.draw do
 
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
   root 'articles#index'
-  resources :users, only:%i[create new edit update destroy index]
+  resources :users do
+    member do
+      get :following, :followers
+    end
+  end
   resources :articles
   resources :comments, only:%i[create destroy]
-  resources :relationships, only: [:create, :destroy]
+  resources :relationships, only:%i[create destroy]
 end

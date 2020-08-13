@@ -43,18 +43,33 @@
     margin-top: 32px;
   }
   &__card {
-    background: #ccc;
-    border-radius: 32px;
     display: flex;
-    padding: 12px;
+    justify-content: space-between;
+    padding: 12px 24px 12px 0px;
     width: 90%;
     margin: 0 auto 24px;
+    background: #ccc;
+    border-radius: 32px;
     color: #333;
     align-items: center;
+    & a {
+      flex-grow: 1;
+    }
   }
   &__cardName {
-    margin-left: 32px;
+    color: #333;
   }
+}
+.followBtn,
+.unfollowBtn,
+.itsMe {
+  font-size: 12px;
+  border: 1px solid #333;
+  border-radius: 3px;
+  padding: 4px;
+}
+.itsMe {
+  width: 82px;
 }
 .noArticle {
   text-align: center;
