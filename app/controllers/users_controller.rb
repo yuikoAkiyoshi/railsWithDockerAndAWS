@@ -73,6 +73,9 @@ class UsersController < ApplicationController
     render 'show_follower'
   end
 
+  def likes
+  end
+
   private
 
   def user_params
