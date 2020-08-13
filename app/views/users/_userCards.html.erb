@@ -6,7 +6,7 @@
                     <% if user.image? %>
                     <%= image_tag user.image.url, :class => 'articles__cardImg' %>
                     <% else %>
-                    <%= image_tag "/assets/default.png", :class => 'articles__cardImg' %>
+                    <%= image_tag "default.png", :class => 'articles__cardImg' %>
                     <% end %>
                 </div>
                 <a href="<%= "/users/#{user.id}/articles" %>">
@@ -15,7 +15,7 @@
                 <% if @current_user && @current_user != user  %>
                     <%= render partial: 'follow_form', locals: { user: user} %>
                 <% elsif @current_user %>
-                    <div class="itsMe">ME</div>
+                    <div class="itsMe">ログイン中</div>
                 <% end %>
             </div>
         <% end %>

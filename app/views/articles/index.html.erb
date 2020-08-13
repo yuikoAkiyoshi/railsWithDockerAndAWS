@@ -31,6 +31,9 @@
         <a href="<%= "/users/" %>" class="">ユーザーで絞り込む</a>
       </div>
     </div>
+    <% if @articles.count == 0%>
+      <div class="noArticle">まだ記事はありません</div>
+    <% end %>
     <div class="articles__cards">
       <% @articles.each do |article| %>
         <a href="<%= "/articles/#{article.id}" %>" class="articles__card">
@@ -38,7 +41,7 @@
             <% if article.image? %>
               <%= image_tag article.image.url, :class => 'articles__cardImg' %>
             <% else %>
-              <%= image_tag "/assets/default.png", :class => 'articles__cardImg' %>
+              <%= image_tag "default.png", :class => 'articles__cardImg' %>
             <% end %>
           </div>
           <div class="articles__cardTitle"><%= article.title %></div>
@@ -48,7 +51,7 @@
             <% if User.find_by(id: article.user_id).image? %>
               <%= image_tag User.find_by(id: article.user_id).image.url %>
             <% else %>
-              <%= image_tag "/assets/default.png" %>
+              <%= image_tag "default.png" %>
             <% end %>
           </div>
           <div class="articles__cardUser"><%= User.find_by(id: article.user_id).name %></div>
@@ -59,6 +62,6 @@
     <%= paginate @articles %>
   </div>
   <% if @current_user %>
-    <a href="<%= new_article_path %>" class="createBtn"><img src="assets/createBtn.png"></a>
+    <a href="<%= new_article_path %>" class="createBtn"><%= image_tag 'createBtn.png' %></a>
   <% end %>
 </div>
