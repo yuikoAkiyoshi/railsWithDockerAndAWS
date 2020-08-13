@@ -29,6 +29,9 @@ class UsersController < ApplicationController
     end
   end
 
+  def show
+  end
+
   def update
     @user = User.find(params[:id])
     if @user.update(user_params)
@@ -54,6 +57,20 @@ class UsersController < ApplicationController
 
   def articles
     @articles = Article.where(user_id: params[:id])
+  end
+
+  def following
+    #@userがフォローしているユーザー
+    @user  = User.find(params[:id])
+    @users = @user.following
+    render 'show_follow'
+  end
+
+  def followers
+    #@userをフォローしているユーザー
+    @user  = User.find(params[:id])
+    @users = @user.followers
+    render 'show_follower'
   end
 
   private
