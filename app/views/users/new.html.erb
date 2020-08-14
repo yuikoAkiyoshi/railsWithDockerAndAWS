@@ -7,15 +7,15 @@
     <%= form_for @user do |f| %>
       <div class="users__form">
         <%= f.label :name, 'ユーザー名' %>
-        <%= f.text_field :name, class: 'users__input' %>
+        <%= f.text_field :name, placeholder:"小文字英数字 最大10文字", class: 'users__input' %>
       </div>
       <div class="users__form">
         <%= f.label :password, 'パスワード' %>
-        <%= f.password_field :password, class: 'users__input' %>
+        <%= f.password_field :password, placeholder:"8文字以上", class: 'users__input' %>
       </div>
       <div class="users__form">
         <%= f.label :password_confirmation, 'パスワード（確認）' %>
-        <%= f.password_field :password_confirmation, class: 'users__input' %>
+        <%= f.password_field :password_confirmation, placeholder:"8文字以上", class: 'users__input' %>
       </div>
       <div class="users__formImg">
         <% if @user.image? %>
