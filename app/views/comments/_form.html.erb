@@ -1,0 +1,17 @@
+<%= render 'shared/error_messages' %>
+
+<div class="commentForm">
+  <p class="commentForm__title">コメントする</p>
+  <div class="commentForm__inner">
+    <%= form_for comment do |f| %>
+      <%= f.hidden_field :article_id %>
+      <%= f.hidden_field :user_id, :value => @current_user.id %>
+      <div class="commentForm__comment">
+        <%= f.text_area :comment, rows: 4, placeholder:"コメント　最大500文字" %>
+      </div>
+      <div class="commentForm__btn">
+      <%= f.submit '送信' %>
+      </div>
+    <% end %>
+  </div>
+</div>

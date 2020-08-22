@@ -1,0 +1,67 @@
+<div class="mv">
+  <div class="mv__bg">
+    <div class="mv__text">
+      <div>D-SHARE</div>
+      <span>
+        community site for sharing diaries
+      </span>
+    </div>
+  </div>
+</div>
+<div class="container">
+  <div class="articles">
+    <h2 class="articles__title">記事一覧</h2>
+    <% if flash[:notice] %>
+      <div class="flash"><%= flash[:notice] %></div>
+    <% end %>
+    <div class="articles__searchWrapper">
+      <div class="articles__search">
+        <%= form_tag articles_path, method: :get do %>
+          <%= select_tag :tag_id,
+                        options_from_collection_for_select(Tag.all, :id, :name, params[:tag_id]),
+                        {
+                          prompt: 'タグで絞り込む',
+                          class: '',
+                          onchange: 'submit(this.form);'
+                        }
+          %>
+        <% end %>
+      </div>
+      <div class="articles__search">
+        <a href="<%= "/users/" %>" class="">ユーザーで絞り込む</a>
+      </div>
+    </div>
+    <% if @articles.count == 0%>
+      <div class="noArticle">まだ記事はありません</div>
+    <% end %>
+    <div class="articles__cards">
+      <% @articles.each do |article| %>
+        <a href="<%= "/articles/#{article.id}" %>" class="articles__card">
+          <div class="articles__cardImgWrapper">
+            <% if article.image? %>
+              <%= image_tag article.image.url, :class => 'articles__cardImg' %>
+            <% else %>
+              <%= image_tag "default.png", :class => 'articles__cardImg' %>
+            <% end %>
+          </div>
+          <div class="articles__cardTitle"><%= article.title %></div>
+          <div class="articles__cardBody"><%= article.body %></div>
+          <div class="articles__cardTime"><%= article.created_at.to_s(:datetime_jp) %></div>
+          <div class="userImg">
+            <% if User.find_by(id: article.user_id).image? %>
+              <%= image_tag User.find_by(id: article.user_id).image.url %>
+            <% else %>
+              <%= image_tag "default.png" %>
+            <% end %>
+          </div>
+          <div class="articles__cardUser"><%= User.find_by(id: article.user_id).name %></div>
+        </a>
+      <% end %>
+    </div>
+
+    <%= paginate @articles %>
+  </div>
+  <% if @current_user %>
+    <a href="<%= new_article_path %>" class="createBtn"><%= image_tag 'createBtn.png' %></a>
+  <% end %>
+</div>

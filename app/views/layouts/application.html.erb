@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>D-SHARE</title>
+    <%= csrf_meta_tags %>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <%= csrf_meta_tags %>
+    <meta charset=“UTF-8”>
+    <meta http-equiv=“X-UA-Compatible” content=“ie=edge”>
+    <meta name=“description” content=“気軽に日記をシェアできるコミュニティサイト“>
+    <!-- og -->
+    <meta property=“og:url” content=“”>
+    <meta property=“og:title” content=“D-SHARE“>
+    <meta property=“og:image” content=“/assets/og.png”>
+    <meta property=“og:description” content=“気軽に日記をシェアできるコミュニティサイト“>
+    <meta property=“og:site_name” content=“D-SHARE”>
+    <meta property=“og:image:width” content=“1200">
+    <meta property=“og:image:height” content=“630">
+    <meta property=“og:type” content=“website”>
+    <meta property=“og:locale” content=“ja_JP”>
+
+    <%= stylesheet_link_tag    'application', media: 'screen', 'data-turbolinks-track': 'reload' %>
+    <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+  </head>
+
+  <body>
+    <header class="header">
+      <div class="header__inner">
+        <h1 class="header__logo"><a href="<%= root_path %>">D-SHARE</a></h1>
+        <div class="header__menu">
+          <% if @current_user %>
+            <%= link_to 'LOGOUT', logout_path, method: :delete, class: 'header__menuItem' %>
+            <div class="header__userMenu js-userMenu">
+              <div class="header__userMenuInner">
+                <div> <%= @current_user.name %></div>
+                <div class="userImg">
+                  <% if @current_user.image? %>
+                    <%= image_tag @current_user.image.url %>
+                  <% else %>
+                    <%= image_tag "default.png" %>
+                  <% end %>
+                </div>
+              </div>
+              <ul class="header__userMenuList js-userMenuList">
+                <li><%= link_to 'アカウント設定', edit_user_path(@current_user.id), class: 'header__menuItem header__menuItem--userMenu' %></li>
+                <li><%= link_to 'フォロー', following_user_path(@current_user.id), class: 'header__menuItem header__menuItem--userMenu' %></li>
+                <li><%= link_to 'フォロワー', followers_user_path(@current_user.id), class: 'header__menuItem header__menuItem--userMenu' %></li>
+                <li><%= link_to 'いいねした記事', likes_user_path(@current_user.id), class: 'header__menuItem header__menuItem--userMenu' %></li>
+              </ul>
+            </div>
+          <% else %>
+            <%= link_to 'SIGNING', new_user_path, class: 'header__menuItem' %>
+            <%= link_to 'LOGIN', loginform_path, class: 'header__menuItem' %>
+          <% end %>
+        </div>
+      </div>
+    </header>
+    <%= yield %>
+  </body>
+</html>

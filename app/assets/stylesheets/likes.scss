@@ -1,0 +1,14 @@
+// Place all the styles related to the likes controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+.liked,
+.like {
+  width: 32px;
+  height: 32px;
+  margin: 0 24px 4px 0;
+  background-image: image-url("like.png");
+  background-size: cover;
+}
+.liked {
+  background-image: image-url("liked.png");
+}

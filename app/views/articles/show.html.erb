@@ -1,0 +1,63 @@
+<div id="fb-root"></div>
+<script async defer crossorigin="anonymous" src="https://connect.facebook.net/ja_JP/sdk.js#xfbml=1&version=v8.0" nonce="cx0gjXem"></script>
+<div class="articleImg">
+  <% if @article.image? %>
+    <%= image_tag @article.image.url %>
+  <% else %>
+    <%= image_tag "default.png" %>
+  <% end %>
+</div>
+<div class="container container--small">
+  <div class="article">
+    <% if flash[:notice] %>
+      <div class="flash"><%= flash[:notice] %></div>
+    <% end %>
+    <div class="article__tags">
+      <% @article.tags.each do |tag| %>
+        <span class="article__tag"><%= tag.name %></span>
+      <% end %>
+    </div>
+    <p class="article__title">
+      <%= @article.title %>
+    </p>
+    <div class="article__time"><%= @article.created_at.to_s(:datetime_jp) %></div>
+    <div class="snsArea">
+      <a href="https://twitter.com/share?ref_src=twsrc%5Etfw" class="twitter-share-button" data-show-count="false" data-url="http://www.dShare.work/articles/<%= @article.id %>">Tweet</a><script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+      <div class="fb-share-button" data-href="http://www.bShare.work/articles/<%= @article.id %>" data-layout="button" data-size="small"><a target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=http%3A%2F%2Fwww.bShare.work%2Farticles%2F%3C%25%3D+%40article.id+%25%3E&amp;src=sdkpreparse" class="fb-xfbml-parse-ignore">シェア</a></div>
+    </div>
+      <p class="article__body">
+      <%= simple_format(@article.body) %>
+    </p>
+    <div class="article__infoWrapper">
+      <div class="article__userInfo">
+        <div class="userImg">
+          <% if @user.image? %>
+            <%= image_tag @user.image.url %>
+          <% else %>
+            <%= image_tag "default.png" %>
+          <% end %>
+        </div>
+        <div><%= @user.name %></div>
+      </div>
+      <% if @current_user && @current_user.id == @user.id  %>
+        <div class="buttonWrapper">
+          <div class="editBtn"><%= link_to "編集", edit_article_path %></div>
+          <div class="deleteBtn"><%= link_to "削除", @article, method: :delete %></div>
+        </div>
+      <%  elsif @current_user %>
+        <%= render 'likes/like', article: @article %>
+      <% end %>
+    </div>
+  </div>
+  <div class="comments">
+    <div class="comments__title">コメント</div>
+    <% if !@article.comments.empty? %>
+      <%= render @article.comments %>
+    <% else %>
+      <div>コメントはまだありません</div>
+    <% end %>
+  </div>
+  <% if @current_user %>
+    <%= render partial: 'comments/form', locals: { comment: @comment} %>
+  <% end %>
+</div>

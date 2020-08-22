@@ -1,0 +1,15 @@
+<div class="container">
+  <div class="articles">
+    <h2 class="articles__title"><%= @user.name %>の記事一覧</h2>
+    </div>
+    <% if !@articles.empty? %>
+      <div class="articles__cards">
+        <% @articles.each do |article| %>
+          <%= render partial: 'articles', locals: { article: article} %>
+        <% end %>
+    </div>
+    <% else %>
+      <div class="noArticle">記事はまだありません</div>
+    <% end %>
+  </div>
+</div>

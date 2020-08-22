@@ -1,0 +1,80 @@
+.users {
+  text-align: center;
+  &__title {
+    margin-top: 32px;
+    font-size: 24px;
+    letter-spacing: 0.2em;
+  }
+  &__form {
+    margin-top: 16px;
+  }
+  &__formImg {
+    width: 300px;
+    margin: 24px 0 12px 0;
+    @media screen and (max-width: 320px) {
+      width: 200px;
+    }
+    & img {
+      width: 100%;
+    }
+    &Btn {
+      display: block;
+      @media screen and (max-width: 320px) {
+        font-size: 12px;
+      }
+    }
+  }
+  &__input,
+  &__btn {
+    width: 100%;
+    padding: 8px;
+    background: rgba(255, 255, 255, 0.5);
+    border-radius: 16px;
+  }
+  &__btn {
+    margin-top: 36px;
+    background: -webkit-linear-gradient(0deg, #fa709a, #fee140);
+    color: #333;
+    &--guest {
+      display: block;
+    }
+  }
+  &__cards {
+    margin-top: 32px;
+  }
+  &__card {
+    display: flex;
+    justify-content: space-between;
+    padding: 12px 24px 12px 0px;
+    width: 90%;
+    margin: 0 auto 24px;
+    background: #ccc;
+    border-radius: 32px;
+    color: #333;
+    align-items: center;
+    & a {
+      flex-grow: 1;
+    }
+    @media screen and(max-width:374px) {
+      padding: 12px 8px 12px 0px;
+    }
+  }
+  &__cardName {
+    color: #333;
+  }
+}
+.followBtn,
+.unfollowBtn,
+.itsMe {
+  font-size: 12px;
+  border: 1px solid #333;
+  border-radius: 3px;
+  padding: 4px;
+}
+.itsMe {
+  width: 82px;
+}
+.noArticle {
+  text-align: center;
+  margin-top: 32px;
+}

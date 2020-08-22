@@ -1,0 +1,34 @@
+<div class="container">
+  <div class="users">
+    <h1 class="users__title">SETTING</h1>
+    
+    <%= render 'shared/error_messages' %>
+
+    <%= form_for @user do |f| %>
+      <div class="users__form">
+        <%= f.label :name, 'ユーザー名' %>
+        <%= f.text_field :name, value: @current_user.name, class: 'users__input' %>
+      </div>
+      <div class="users__form">
+        <%= f.label :password, '新しいパスワード' %>
+        <%= f.password_field :password, class: 'users__input' %>
+      </div>
+      <div class="users__form">
+        <%= f.label :password_confirmation, '新しいパスワード（確認）' %>
+        <%= f.password_field :password_confirmation, class: 'users__input' %>
+      </div>
+      <div class="users__formImg">
+        <% if @user.image? %>
+          <%= image_tag @user.image.url %>
+        <% else %>
+          <%= image_tag "default.png" %>
+        <% end %>
+      </div>
+      <%= f.file_field :image, accept: 'image/jpeg,image/gif,image/png', class: 'users__formImgBtn' %>
+      <%if @current_user.name != 'guest'%>
+        <%= f.submit '更新', class: 'users__btn' %>
+      <% end %>
+    <% end %>
+    <!-- <div class="deleteBtn"><%= link_to "退会", user_path(@current_user.id), method: :delete %></div> -->
+  </div>
+</div>

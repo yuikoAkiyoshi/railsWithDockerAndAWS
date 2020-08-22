@@ -1,0 +1,58 @@
+version: 2
+jobs:
+  build:
+    # stepsに書かれているコマンドをどのディレクトリで実行するかを指定します。
+    # 指定しない場合は~/projectが使われますが、明示的に~/<リポジトリ名>と指定するとよいでしょう。
+    working_directory: ~/railsWithDockerAndAWS
+    docker:
+      # ruby2.3.6を使ったアプリのため
+      - image: circleci/ruby:2.3.6-node-browsers
+        environment:
+          - RAILS_ENV: 'test'
+      # Mysqlのバージョン5.7で動かしていたため、5.6を指定
+      - image: circleci/mysql:5.7
+        environment:
+          - MYSQL_ALLOW_EMPTY_PASSWORD: 'true'
+          - MYSQL_ROOT_HOST: '%'
+    steps:
+      # ソースコードをVCS（GitHubやBitbucket）からダウンロードします。
+      # 通常コードがないとビルドを始められないので、最初に書いておくとよいでしょう。
+      - checkout
+      - restore_cache:
+          keys:
+            - v1-dependencies-{{ checksum "Gemfile.lock" }}
+            - v1-dependencies-
+
+      - run: bundle install --path vendor/bundle
+
+      - save_cache:
+          paths:
+            - ./vendor/bundle
+          key: v1-dependencies-{{ checksum "Gemfile.lock" }}
+
+# ②ちょっと無理やりですが、database.ymlとdatabase.yml.ciを入れ替える記述です。
+      - run: mv config/database.yml.ci config/database.yml 
+
+      # Database setup
+      - run: bundle exec rake db:create
+      - run: bundle exec rake db:schema:load
+
+# rspecを走らせる記述です。
+      - run:
+          command: |
+            mkdir /tmp/test-results
+            TEST_FILES="$(circleci tests glob "spec/**/*_spec.rb" | \
+              circleci tests split --split-by=timings)"
+            bundle exec rspec \
+              --format progress \
+              --format RspecJunitFormatter \
+              --out /tmp/test-results/rspec.xml \
+              --format progress \
+              $TEST_FILES
+
+      # collect reports
+      - store_test_results:
+          path: /tmp/test-results
+      - store_artifacts:
+          path: /tmp/test-results
+          destination: test-results

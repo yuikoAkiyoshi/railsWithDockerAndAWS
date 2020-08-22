@@ -1,0 +1,13 @@
+<div class="container container--small">
+  <div class="writeArticle">
+    <h1 class="writeArticle__title">投稿する</h1>
+    <div class="writeArticle__form">
+      <% @article.errors.full_messages.each do |message| %>
+        <div class="writeArticle__formError">
+          <%= message %>
+        </div>
+      <% end %>
+      <%= render partial: 'form', locals: { article:@article }%>
+    </div>
+  </div>
+</div>

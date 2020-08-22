@@ -11,8 +11,14 @@ docker-compose build
 ```
  
 # Usage
+コンテナ起動
 ```bash
 docker-compose up -d
+```
+
+scss,jsフォーマッター
+```bash
+npm run format
 ```
  
 # Author

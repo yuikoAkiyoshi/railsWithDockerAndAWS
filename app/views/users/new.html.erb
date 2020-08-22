@@ -1,0 +1,31 @@
+<div class="container">
+  <div class="users">
+    <h1 class="users__title">SIGNING</h1>
+
+    <%= render 'shared/error_messages' %>
+
+    <%= form_for @user do |f| %>
+      <div class="users__form">
+        <%= f.label :name, 'ユーザー名' %>
+        <%= f.text_field :name, placeholder:"小文字英数字 最大10文字", class: 'users__input' %>
+      </div>
+      <div class="users__form">
+        <%= f.label :password, 'パスワード' %>
+        <%= f.password_field :password, placeholder:"8文字以上", class: 'users__input' %>
+      </div>
+      <div class="users__form">
+        <%= f.label :password_confirmation, 'パスワード（確認）' %>
+        <%= f.password_field :password_confirmation, placeholder:"8文字以上", class: 'users__input' %>
+      </div>
+      <div class="users__formImg">
+        <% if @user.image? %>
+          <%= image_tag @user.image.url %>
+        <% else %>
+          <%= image_tag "default.png" %>
+        <% end %>
+      </div>
+      <%= f.file_field :image, accept: 'image/jpeg,image/gif,image/png', class: 'users__formImgBtn' %>
+      <%= f.submit '作成', class: 'users__btn' %>
+    <% end %>
+  </div>
+</div>

@@ -1,0 +1,25 @@
+<div class="users__cards">
+    <% if users.count != 0 %>
+        <% users.each do |user| %>
+            <div class="users__card">
+                <div class="userImg">
+                    <% if user.image? %>
+                    <%= image_tag user.image.url, :class => 'articles__cardImg' %>
+                    <% else %>
+                    <%= image_tag "default.png", :class => 'articles__cardImg' %>
+                    <% end %>
+                </div>
+                <a href="<%= "/users/#{user.id}/articles" %>">
+                    <div class="users__cardName"><%= user.name %></div>
+                </a>
+                <% if @current_user && @current_user != user  %>
+                    <%= render partial: 'follow_form', locals: { user: user} %>
+                <% elsif @current_user %>
+                    <div class="itsMe">ログイン中</div>
+                <% end %>
+            </div>
+        <% end %>
+    <% else %>
+        <div>該当のユーザーは0名です</div>
+    <% end %>
+</div>

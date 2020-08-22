@@ -1,0 +1,21 @@
+<div class="container container--small container--users">
+  <div class="users">
+    <h1 class="users__title">LOGIN</h1>
+    <% if flash[:notice] %>
+        <div><%= flash[:notice] %></div>
+    <% end %>
+
+    <%= form_for(:session, method: :post, url: login_path) do |f| %>
+      <div class="users__form">
+        <%= f.label :name, 'ユーザー名' %>
+        <%= f.text_field :name, class: 'users__input' %>
+      </div>
+      <div class="users__form">
+        <%= f.label :password, 'パスワード' %>
+        <%= f.password_field :password, class: 'users__input' %>
+      </div>
+      <%= f.submit 'ログイン', class: 'users__btn' %>
+    <% end %>
+    <%= link_to 'ゲストログイン', gestlogin_path, class: 'users__btn users__btn--guest', method: :post %>
+  </div>
+</div>
