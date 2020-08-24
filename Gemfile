@@ -36,6 +36,7 @@ gem 'kaminari'
 gem 'rails-i18n'
 gem 'carrierwave'
 gem 'dotenv-rails'
+gem 'fog'
 
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
