@@ -8,7 +8,7 @@ http://dshare-ecs-lb-1191990191.ap-northeast-1.elb.amazonaws.com/
 - Ruby 2.3.6
 - Ruby on Rails 5.0.7
 - JavaScript (jQuery)
-- AWS (ECS, ECR, EC2, RDS for MySQL, VPC, ALB)
+- AWS (ECS, ECR, EC2, RDS for MySQL, VPC, ALB, S3)
 - Docker/docker-compose
 - CircleCI (CI)
 - Nginx, Puma
